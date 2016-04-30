@@ -12,12 +12,17 @@ Rails.application.routes.draw do
   
   resources :users
   resources :posts
+  resources :microposts
+  post 'favs/:id' => 'favs#create', as: :fav
+  delete 'favs/:id' => 'favs#destroy', as: :unfav
   
   get 'login' => 'sessions#new'
   
   post 'login' => 'sessions#create'
   
   get 'logout' => 'sessions#destroy'
+  
+  post 'responses/:id' => 'responses#create', as: :responses
   
   
   

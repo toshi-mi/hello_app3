@@ -3,7 +3,23 @@
 <h1>土台アプリ</h1>
 <p>これは練習用のアプリです。</p>
 
-<%= link_to 'ユーザー一覧', users_path %> | <%= link_to '投稿一覧', posts_path %> | <%= link_to 'ログアウト', logout_path %>
+<%= link_to 'ユーザー一覧', users_path %> | <%= link_to 'ログアウト', logout_path %>
+
+<h2>新規投稿</h2>
+<%= form_for(@micropost) do |f| %>
+<p>タイトル</p>
+<%= f.text_field :title %>
+<p>内容</p>
+<%= f.text_area :content %>
+<p><%= f.submit '投稿' %></p>
+<% end %>
+
+<h2>投稿一覧</h2>
+<ul>
+  <% @microposts.each do |micropost| %>
+  <li><%= link_to micropost.title, micropost %> by <%= link_to micropost.user.name, micropost.user %> | ☆ x <%= micropost.favs.count %></li>
+  <% end %>
+</ul>
 
 <% else %>
 

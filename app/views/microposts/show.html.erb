@@ -1,0 +1,22 @@
+<h1><%= @micropost.title %></h1>
+
+<p><%= @micropost.content %></p>
+
+<% if User.find_by(id: session[:user_id]).fav_microposts.include?(@micropost) %>
+  <%= link_to '☆を消す', unfav_path, method: :delete %>
+<% else %>
+  <%= link_to '☆', fav_path, method: :post %> x <%= @micropost.favs.count %>
+<% end %>
+
+<h2>この投稿へのコメント一覧</h2>
+<ul>
+  <% @responses.each do |response| %>
+  <li><%= response.content %> by <% user = User.find_by(id: response.user_id) %><%= link_to user.name, user %></li>
+  <% end %>
+</ul>
+
+<h2>コメントを残す</h2>
+<%= form_for(@response) do |f| %>
+<%= f.text_area :content %>
+<p><%= f.submit '送信' %></p>
+<% end %>

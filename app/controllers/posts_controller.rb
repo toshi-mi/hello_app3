@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     def index
       @posts = Post.all
+      @post = Post.new
     end
     
     def show
@@ -11,11 +12,15 @@ class PostsController < ApplicationController
       @post = Post.new
     end
     
+    
+    
     def create
-      post = Post.new(post_params)
-      post.save
+      @current_user = User.find_by(id: session[:user_id])
+      @post = @current_user.posts.build(post_params)
+      @post.save
       redirect_to root_path
     end
+
     
     def update
       post = Post.find(params[:id])
