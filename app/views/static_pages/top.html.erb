@@ -1,9 +1,8 @@
 <% if session[:user_id]  %>
-
-<h1>土台アプリ</h1>
+<h1><%= @user.name %>さんようこそ！</h1>
 <p>これは練習用のアプリです。</p>
 
-<%= link_to 'ユーザー一覧', users_path %> | <%= link_to 'ログアウト', logout_path %>
+<%= link_to 'マイページ', @user %> | <%= link_to 'ユーザー一覧', users_path %> | <%= link_to 'ログアウト', logout_path %>
 
 <h2>新規投稿</h2>
 <%= form_for(@micropost) do |f| %>
@@ -23,7 +22,8 @@
 
 <% else %>
 
-<h1>トップページ</h1>
+<h1>土台アプリ</h1>
+<p>これは練習用のアプリです。</p>
 
 <%= link_to 'ログイン', login_path %> | <%= link_to '新規登録', new_user_path %>
 
