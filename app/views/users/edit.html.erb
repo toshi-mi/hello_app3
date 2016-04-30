@@ -1,0 +1,19 @@
+<h1>ユーザーの更新</h1>
+
+<%= form_for(@user) do |f| %>
+
+<p>名前</p>
+<%= f.text_field :name %>
+
+<p>メールアドレス</p>
+<%= f.email_field :email %>
+
+<p>プロフィール</p>
+<%= f.text_area :profile %>
+
+<p>
+<%= f.submit '作成' %>
+</p>
+
+
+<% end %>
